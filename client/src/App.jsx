@@ -12,12 +12,14 @@ import Men from './frontend/pages/men/Men.jsx'
 import Women from './frontend/pages/women/Women.jsx'
 import Kids from './frontend/pages/kids/Kids.jsx'
 import Accessories from './frontend/pages/accessories/Accessories.jsx'
+import MyAccount from './frontend/pages/my-account/My-Account.jsx'
 import Cart from './frontend/pages/cart/Cart.jsx'
 import adminStore from './admin/adminStore.js'
 import AdminLayout from './admin/layout/Layout.jsx'
 import AdminOrders from './admin/pages/orders/Orders.jsx'
 import AdminDashboard from './admin/pages/dashboard/Dashboard.jsx'
 import AdminProducts from './admin/pages/products/Products.jsx'
+// import prodcutsStore from './frontend/productsStore.js'
 import {checkUserAuth} from './globalslices/useSlice.js'
 import { useDispatch,useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -51,9 +53,7 @@ function App() {
     },
     {
       path:"/",
-      element:(
-        <Layout />
-      ),
+      element:<Layout />,
       children:[
           {
             path:"",
@@ -86,7 +86,11 @@ function App() {
           {
               path:"cart",
               element:<Cart />,
-          }
+          },
+          {
+            path:"my-account",
+            element:<MyAccount />,
+        }
       ]
     },
     {
@@ -118,7 +122,8 @@ function App() {
 
   ])
   return(
-    <RouterProvider router={router} />
+    <Provider store={globalStore}>
+    <RouterProvider router={router} /></Provider>
   
   )
 }

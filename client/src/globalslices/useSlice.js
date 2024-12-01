@@ -1,6 +1,6 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
 import {checkSignup,checkLogin,checkLogout,checkAuth} from '../axios/user/axios'
-
+import { toast } from "react-toastify";
 export const getUserSignup = createAsyncThunk('userSignup',async(formData)=>{
     try{
         const data = await checkSignup(formData);
@@ -13,6 +13,11 @@ export const getUserSignup = createAsyncThunk('userSignup',async(formData)=>{
 export const getUserLogin = createAsyncThunk('userLogin',async(formData)=>{
     try{
         const data = await checkLogin(formData);
+        if(data.success){
+            toast.success("Logged In");
+        }else{
+        toast.error(data.message)
+        }
         return data;
        
     }catch(error){
@@ -25,6 +30,11 @@ export const getUserLogout = createAsyncThunk('userLogout',async()=>{
     try{
         const data = await checkLogout();
         console.log(data)
+        if(data.success){
+            toast.success("Logged Out");
+        }else{
+        toast.error(data.message)
+        }
         return data;
        
     }catch(error){
