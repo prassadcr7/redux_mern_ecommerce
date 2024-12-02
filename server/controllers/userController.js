@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 dotenv.config()
 const createToken = (id,type,email) => {
-    return jwt.sign({id,type,email},process.env.JWT_SECRET,{expiresIn : '20m'});
+    return jwt.sign({id,type,email},process.env.JWT_SECRET,{expiresIn : '220m'});
 }
 const registerUser = async(req,res) => {
     console.log(req.headers)
@@ -32,9 +32,10 @@ const registerUser = async(req,res) => {
 
 const loginUser = async (req,res) => {
     const {email,password} = req.body;
-    console.log(req.headers)
+    
     try{
         const user = await userModel.findOne({email});
+        console.log(req.headers)
         if(!user){
             return res.json({success:false,message:"User doesn't exist...Please Create Account"})
         }

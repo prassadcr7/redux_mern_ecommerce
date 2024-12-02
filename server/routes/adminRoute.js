@@ -20,4 +20,5 @@ adminRouter.get('/get',getProductsFromDB)
 adminRouter.put('/edit/:id',upload.single("image"),editProductInDB)
 adminRouter.delete('/delete/:id',deleteProductFromDB)
 
+
 module.exports = adminRouter

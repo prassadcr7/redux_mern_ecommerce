@@ -10,7 +10,9 @@ const Accessories = () => {
             dispatch(getFilteredProducts('accessories'))
         },1000)
         fetchData()
-        return clearTimeout(fetchData);
+        return ()=> {
+            clearTimeout(fetchData);
+        }
     },[])
     if(error){
         <h1>{error}</h1>

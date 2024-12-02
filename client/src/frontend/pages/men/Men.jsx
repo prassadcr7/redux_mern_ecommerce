@@ -4,15 +4,13 @@ import {useEffect,useState } from 'react'
 import ProductListing from '../../components/ProductListing.jsx'
 const Men = () => {
     const dispatch = useDispatch();
-    const {loading,error,filteredProducts} = useSelector((state) => state.products)
-
+    const {loading,error,filteredProducts,data} = useSelector((state) => state.products)
     useEffect( ()=>{
-        const fetchData = () => setTimeout(()=>{
+        if(data){
             dispatch(getFilteredProducts('men'))
-        },1000)
-        fetchData()
-        return clearTimeout(fetchData);
-    },[])
+        }
+        return 
+    },[data])
     if(error){
         <h1>{error}</h1>
     }

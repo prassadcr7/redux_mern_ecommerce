@@ -55,4 +55,5 @@ const deleteProductFromDB = async (req,res) => {
 }
 
 
+
 module.exports = {addProductToDB,getProductsFromDB,editProductInDB,deleteProductFromDB}

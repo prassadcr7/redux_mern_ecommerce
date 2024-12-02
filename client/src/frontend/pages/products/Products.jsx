@@ -6,7 +6,6 @@ import Filters from './Filters.jsx'
 import './products.css'
 const Products = () => {
     const data = useSelector((state) => state.products)
-    console.log(data)
     const dispatch = useDispatch();
     const [productsArr,setProductsArr] = useState('')
     const [categories,setCategoriesFilter] = useState([])

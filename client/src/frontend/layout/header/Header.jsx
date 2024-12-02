@@ -3,9 +3,15 @@ import { SiHomeassistant } from "react-icons/si";
 import { LuShoppingCart } from "react-icons/lu";
 import { FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import './header.css'
 const Header = () => {
     const user = useSelector((state) => state.user)
-    // console.log(state)
+    const cart = useSelector((state) => state.cart)
+    console.log(cart)
+    let cartItems = null;
+    if(cart){
+        cartItems = cart.data.length;
+    }
     return(
         <header className="max-w-screen-lg m-auto">
             <div className="flex items-center h-14 bg-black text-white items-center px-3">
@@ -22,6 +28,7 @@ const Header = () => {
                 </nav>
                 <div className="flex gap-5 items-center text-xl">
                     <p><NavLink to="/cart"><LuShoppingCart /></NavLink></p>
+                    <div className="cart-value">{cartItems}</div>
                     <p><NavLink to= {user.isAuthenticated ? "/my-account" : "/auth/login"}><FaUser /></NavLink></p>
                 </div>
             </div>
