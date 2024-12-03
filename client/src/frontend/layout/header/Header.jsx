@@ -7,7 +7,7 @@ import './header.css'
 const Header = () => {
     const user = useSelector((state) => state.user)
     const cart = useSelector((state) => state.cart)
-    console.log(cart)
+    // console.log(cart)
     let cartItems = null;
     if(cart){
         cartItems = cart.data.length;

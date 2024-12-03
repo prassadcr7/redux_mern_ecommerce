@@ -1,10 +1,10 @@
 const cartModel = require('../models/cartModel.js')
 
 const getCartItems = async(req,res) => {
-    console.log('get cart items')
+    // console.log('get cart items')
     const user = req.user;
     try{
-        console.log('inside getting cart item')
+        // console.log('inside getting cart item')
         if(!user){
             return res.json({success:false,message:'User Authorization Failed'})
         }
@@ -23,7 +23,7 @@ const addProductToCart = async(req,res) => {
     console.log(item)
     const user = req.user;
     try{
-        console.log('inside adding cart item')
+        // console.log('inside adding cart item')
         if(!user){
             return res.json({success:false,message:'User Authorization Failed'})
         }

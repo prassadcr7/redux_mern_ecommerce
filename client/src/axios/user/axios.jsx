@@ -69,11 +69,13 @@ export const addAddressToDB = async (formData) => {
     }
 }
 
-export const getAddressToDB = async () => {
+export const getAddressfromDB = async () => {
+   
     try{
-        const response = await addressApi.post('/get',{},{
+        const response = await addressApi.get('/get',{
             withCredentials:true
         })
+        // console.log(response)
         return response.data;
     }catch(error){
         return error;

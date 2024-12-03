@@ -52,12 +52,41 @@ export const checkUserAuth = createAsyncThunk('userAuth',async()=>{
         console.log(error)
     }
 })
+
+export const getUserAddress = createAsyncThunk('getUserAddress',async()=>{
+    try{
+        const data = await getAddressfromDB();
+        // console.log(data);
+        if(!data.success)
+        toast.error(data.message)
+        return data;
+       
+    }catch(error){
+        console.log(error)
+    }
+})
+
+export const addUserAddress = createAsyncThunk('userAddress',async(formData)=>{
+    console.log(formData)
+    try{
+        const data = await addAddressToDB(formData);
+        console.log(data)
+        if(!data.success)
+        toast.error(data.message)
+        return data;
+    }catch(error){
+        console.log(error)
+    }
+})
+
+
 const userSlice = createSlice({
     name:'user',
     initialState:{
         error:null,
         isAuthenticated:false,
-        user:null
+        user:null,
+        address:[]
     },
     reducers:{},
     extraReducers:(builder)=>{
@@ -149,6 +178,46 @@ const userSlice = createSlice({
         
         .addCase(getUserLogout.pending,(state,action) => {
             state.loading = true;
+        })
+
+        .addCase(getUserAddress.fulfilled,(state,action) => {
+            // console.log(action.payload)
+            state.loading = false;
+            if(action.payload.success){
+                state.address = action.payload.data;
+            }
+            if(!action.payload.success){
+                state.error = action.payload.message;
+            }
+        })
+        .addCase(getUserAddress.rejected,(state,action) => {
+            state.loading = false;
+            state.error = action.payload.message;
+        })
+        
+        .addCase(getUserAddress.pending,(state,action) => {
+            state.loading = true;
+            state.error = null;
+        })
+
+        .addCase(addUserAddress.fulfilled,(state,action) => {
+            state.loading = false;
+            if(action.payload.success){
+            state.address = [...state.address,action.payload.address];
+            toast.success('Item Added To Cart')
+            }
+            if(!action.payload.success){
+                state.error = action.payload.message;
+            }
+        })
+        .addCase(addUserAddress.rejected,(state,action) => {
+            state.loading = false;
+            state.error = action.payload.message;
+        })
+        
+        .addCase(addUserAddress.pending,(state,action) => {
+            state.loading = true;
+            state.error = null;
         })
         
     }

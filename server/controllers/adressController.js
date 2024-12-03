@@ -1,18 +1,20 @@
 const addressModel = require('../models/addressModel');
 
 const addAddress = async(req,res) => {
-    console.log(req.body)
-    const address = req.body;
+   
+    const userAddress = req.body;
     const user = req.user;
+    console.log(user)
     try{
         console.log('inside add address')
         if(!user){
             return res.json({success:false,message:'User Authorization Failed'})
         }
+        console.log(userAddress)
         const newAddress = new addressModel({
-            userId:user.id,address:address
+            userId:user.id,address:userAddress
             })
-        const address = await newCart.save();
+        const address = await newAddress.save();
         return res.json({success:true,message:'address added',address})
     }catch(error){
         return res.json({success:false,message:'Error'})
@@ -21,17 +23,19 @@ const addAddress = async(req,res) => {
 }
 
 const getAddress = async (req,res) => {
+    
     const user = req.user;
+    
     try{
         console.log('inside getting address')
+        
         if(!user){
             return res.json({success:false,message:'User Authorization Failed'})
         }
-        const cartData = await cartModel.find({userId:user.id,deleted:0}).select('address -_id');
-        console.log(cartData)
-        // const data = cartData.map((element,index) => element.item)
+        const addresses = await addressModel.find({userId:user.id,deleted:0}).select('address -_id');
         
-        // return res.json({success:true,message:'items',data})
+        const data = addresses.map((element,index) => element.address)
+        return res.json({success:true,message:'items',data})
     }catch(error){
         return res.json({success:false,message:'Error'})
     }

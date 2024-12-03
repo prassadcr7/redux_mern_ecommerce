@@ -19,6 +19,7 @@ import AdminLayout from './admin/layout/Layout.jsx'
 import AdminOrders from './admin/pages/orders/Orders.jsx'
 import AdminDashboard from './admin/pages/dashboard/Dashboard.jsx'
 import AdminProducts from './admin/pages/products/Products.jsx'
+import Checkout from './frontend/pages/checkout/Checkout.jsx'
 import {checkUserAuth} from './globalslices/useSlice.js'
 import { useDispatch,useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -89,7 +90,11 @@ function App() {
           {
             path:"my-account",
             element:<MyAccount />,
-        }
+        },
+        {
+          path:"checkout",
+          element:<Checkout />,
+      }
       ]
     },
     {
