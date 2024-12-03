@@ -39,14 +39,15 @@ const loginUser = async (req,res) => {
         if(!user){
             return res.json({success:false,message:"User doesn't exist...Please Create Account"})
         }
-        
+        console.log(user.username)
         const match = await bcrypt.compare(password,user.password)
         if(match){
             const token = createToken({id:user._id,type:user.type,email:user.email})
             return res.cookie('token', token, { httpOnly: true, secure: false })
             .json({ success: true, user: { 
             email: user.email,
-            type: user.type
+            type: user.type,username:user.username
+            
             } });
         }else{
             return res.json({success:false,message:'invalid password'})

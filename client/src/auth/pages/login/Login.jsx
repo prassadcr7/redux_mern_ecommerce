@@ -8,6 +8,7 @@ const Login = () => {
     const [formData,setFormData] = useState({email:'',password:''})
     const {error,user} = useSelector((state) => state.user)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const changeInput = (event) => {
         const key = event.target.name;
         const val = event.target.value;
@@ -25,8 +26,7 @@ const Login = () => {
             toast.error(error)
         }
         if(user){
-            toast.success(`Logged In as ${user.email}`)
-            // navigate('/auth/login')
+            navigate('/home')
         }
 
         return;
