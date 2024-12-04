@@ -10,7 +10,7 @@ const productRouter = require('./routes/productRoute.js')
 const cartRouter = require('./routes/cartRoute.js')
 const addressRouter = require('./routes/addressRoute.js')
 app.use(cors({
-    origin : 'http://localhost:5177',
+    origin : 'http://localhost:5178',
     methods : ['GET','POST','DELETE','PUT'],
     allowHeaders : [
         "Content-Type",

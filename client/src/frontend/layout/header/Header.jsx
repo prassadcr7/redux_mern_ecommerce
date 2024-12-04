@@ -26,7 +26,7 @@ const Header = () => {
                     <li><NavLink to="contact-us">Contact Us</NavLink></li>
                     </ul>
                 </nav>
-                <div className="flex gap-5 items-center text-xl">
+                <div className="flex gap-3 relative items-center text-xl">
                     <p><NavLink to="/cart"><LuShoppingCart /></NavLink></p>
                     <div className="cart-value">{cartItems}</div>
                     <p><NavLink to= {user.isAuthenticated ? "/my-account" : "/auth/login"}><FaUser /></NavLink></p>

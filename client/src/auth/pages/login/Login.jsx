@@ -22,9 +22,6 @@ const Login = () => {
         
     }
     useEffect(()=>{
-        if(error){
-            toast.error(error)
-        }
         if(user){
             navigate('/home')
         }

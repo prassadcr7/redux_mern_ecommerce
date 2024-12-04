@@ -118,10 +118,12 @@ const userSlice = createSlice({
                 state.user = action.payload.user;
                 state.token = action.payload.token;
                 state.isAuthenticated = true;
+                toast.success('Logged in')
             }
             if(!action.payload.success){
                 state.error = action.payload.message;
                 state.isAuthenticated = false;
+                toast.error(action.payload.message)
             }
         })
         .addCase(getUserLogin.rejected,(state,action) => {

@@ -17,7 +17,6 @@ const productsSlice = createSlice({
     },
     reducers:{
         getFilteredProducts:(state,action) => {
-            console.log(action.payload)
             state.filteredProducts = state.data ? (state.data).filter((element,index) => element.category === action.payload) : [];
         }
     },
