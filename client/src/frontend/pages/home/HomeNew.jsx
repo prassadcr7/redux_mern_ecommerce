@@ -33,9 +33,7 @@ const ImageView = ({images}) => {
 
         useEffect(() => {
             const interval = setInterval(() => {
-               setActiveImg((prevIndex) => { 
-                    return  (prevIndex + 1) % images.length
-                });
+               setActiveImg((prevIndex) =>  (prevIndex + 1) % images.length);
             }, 4000); 
         
             return () => {

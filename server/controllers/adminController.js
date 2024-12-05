@@ -1,5 +1,6 @@
 const adminModel = require('../models/adminModel.js')
 
+
 const addProductToDB = async(req,res) => {
     const {description,title,price,salePrice,category,brand} = req.body;
     let image_filename = req.file.filename;

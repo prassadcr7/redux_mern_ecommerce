@@ -3,6 +3,7 @@ import AddressForm from './AddressForm'
 import { useEffect, useState } from "react"
 import {getUserLogout} from '../../../globalslices/useSlice'
 import AddressList from './AddressList'
+import OrderList from "./OrderList"
 const UserDetails = () => {
     const [showAddressForm,setShowAddressForm] = useState(false)
     const dispatch= useDispatch()
@@ -27,6 +28,9 @@ const UserDetails = () => {
             </div>
             <div className="add-list mt-7">
                 <AddressList address={address}/>
+            </div>
+            <div className="add-list mt-7">
+                <OrderList/>
             </div>
             <AddressForm showAddressForm={showAddressForm} setShowAddressForm={setShowAddressForm}/>
             </>

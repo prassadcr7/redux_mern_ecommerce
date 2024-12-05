@@ -9,6 +9,8 @@ const adminRouter = require('./routes/adminRoute.js')
 const productRouter = require('./routes/productRoute.js')
 const cartRouter = require('./routes/cartRoute.js')
 const addressRouter = require('./routes/addressRoute.js')
+const orderRouter = require('./routes/orderRoute.js')
+const adminOrderRouter = require('./routes/adminOrderRoute.js')
 app.use(cors({
     origin : 'http://localhost:5178',
     methods : ['GET','POST','DELETE','PUT'],
@@ -26,9 +28,11 @@ app.use(cookieParser())
 app.use(express.json())
 app.use("/api/user",userRouter)
 app.use("/api/admin/products",adminRouter)
+app.use("/api/admin/orders",adminOrderRouter)
 app.use("/api/client/products",productRouter)
 app.use("/api/client/cart",cartRouter)
 app.use("/api/user/address",addressRouter)
+app.use("/api/user/orders",orderRouter)
 app.use("/images",express.static('uploads'))
 connectDB()
 

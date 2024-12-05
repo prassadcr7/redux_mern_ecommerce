@@ -6,14 +6,44 @@ import {useEffect,useState} from 'react'
 const DisplayCart = () => {
     const dispatch = useDispatch()
     const data = useSelector((state) => state)
+    const cartItems = data.cart.data;
+    const products = data.products.data;
     const cartArr = data.cart.displayCart;
-    // console.log(cartArr)
-    useEffect(()=>{
-        if(cartArr){
-           dispatch(setTotalCartValue(cartArr))
-       }
-       return   
-    },[cartArr])
+    // const [loading,setLoading] = useState(true)
+    // const [cartArr,setCartArr] = useState([])
+console.log(data)
+    // const getDataArr = () => {
+    //     if(cartItems && products){
+    //         dispatch(setDisplayCart({cartItems:cartItems,products:products}))
+    //         const cart = cartItems.map((element,index) => {
+    //             const found = products.find((innerElement,innerIndex) => element._id === innerElement._id)
+    //             if(found){
+    //                 return {...element,image:found.image,title:found.title,brand:found.brand,category:found.category,
+    //                     total:Number(element.qty*element.salePrice)
+    //                 }
+    //             }
+    //             return element;
+    //         })
+    //         if(cart){
+    //             // setLoading(false)
+    //             setCartArr(cart)
+    //             dispatch(setTotalCartValue(cart))
+    //         }
+    //     }
+    // }
+    // useEffect(()=>{
+    //     if(cartItems && products){
+    //         getDataArr()
+    //  }
+    //     return 
+        
+    // },[cartItems,products])
+
+    // if(loading){
+    //     return(
+    //         <h1>Loading....Please Wait</h1>
+    //     )
+    // }
     if(cartArr){
         return(
             <>
@@ -54,5 +84,3 @@ const DisplayCart = () => {
 }
 
 export default DisplayCart;
-
-

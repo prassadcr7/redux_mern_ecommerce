@@ -83,8 +83,23 @@ const cartSlice = createSlice({
                 })
             }
             return state;
+        },
+        setDisplayCart:(state,action) => {
+            console.log(action)
+            if(action.payload.cartItems && action.payload.products){
+                state.displayCart = action.payload.cartItems.map((element,index) => {
+                    const found = action.payload.products.find((innerElement,innerIndex) => element._id === innerElement._id)
+                    if(found){
+                        return {...element,image:found.image,title:found.title,brand:found.brand,category:found.category,
+                            total:Number(element.qty*element.salePrice)
+                        }
+                    }
+                    return element;
+                })
         }
-    },
+        return state;
+        }
+    }, 
     extraReducers:(builder) => {
         builder
         //add
@@ -176,4 +191,4 @@ const cartSlice = createSlice({
 })
 
 export default cartSlice.reducer;
-export const {addToCart,updateQuantity,setTotalCartValue} = cartSlice.actions;
+export const {addToCart,updateQuantity,setTotalCartValue,setDisplayCart} = cartSlice.actions;
