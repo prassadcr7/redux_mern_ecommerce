@@ -1,5 +1,6 @@
 const adminModel = require('../models/adminModel.js')
 
+
 const addProductToDB = async(req,res) => {
     const {description,title,price,salePrice,category,brand} = req.body;
     let image_filename = req.file.filename;
@@ -53,6 +54,7 @@ const deleteProductFromDB = async (req,res) => {
         return res.json({success:false,message:'error'})
     }
 }
+
 
 
 module.exports = {addProductToDB,getProductsFromDB,editProductInDB,deleteProductFromDB}

@@ -52,3 +52,32 @@ export const checkAuth = async () => {
         return error;
     }
 }
+
+
+const addressApi = axios.create({
+    baseURL:'http://localhost:4000/api/user/address'
+})
+
+export const addAddressToDB = async (formData) => {
+    try{
+        const response = await addressApi.post('/add',formData,{
+            withCredentials:true
+        })
+        return response.data;
+    }catch(error){
+        return error;
+    }
+}
+
+export const getAddressfromDB = async () => {
+   
+    try{
+        const response = await addressApi.get('/get',{
+            withCredentials:true
+        })
+        // console.log(response)
+        return response.data;
+    }catch(error){
+        return error;
+    }
+}
