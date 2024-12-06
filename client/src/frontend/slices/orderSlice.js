@@ -6,7 +6,7 @@ import {getOrdersFromDB,addOrdersToDB,verifyCardPayment} from '../axios/orderAxi
 export const getOrders = createAsyncThunk('getOrders',async (operation) => {
     try{
         const data = await getOrdersFromDB();
-        console.log(data)
+        // console.log(data)
         return data;
     }catch(error){
         return error;

@@ -5,7 +5,7 @@ import { useEffect,useState } from "react";
 import { NavLink } from "react-router-dom";
 const ProductsListing = ({productsArr}) => {
     const isLoggedIn = useSelector((state) => state.user.isAuthenticated)
-    console.log(useSelector((state) => state.cart))
+    // console.log(useSelector((state) => state.cart))
     const [displayProducts,setDisplayProducts] = useState([])
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -15,11 +15,10 @@ const ProductsListing = ({productsArr}) => {
     const goToCart = () => {
         navigate("/cart")
     }
-    console.log(productsArr)
+
     const cartData = useSelector((state) => state.cart.data);
     useEffect(()=> {
         if(cartData && productsArr){
-            console.log(cartData)
             const newProducts = productsArr.map((element,index) => {
                 const found = cartData.find((prodElement,prodIndex) => prodElement._id === element._id)
                 if(found){
@@ -33,10 +32,30 @@ const ProductsListing = ({productsArr}) => {
 
         }
 
-    },[cartData])
+    },[cartData,productsArr])
+
+    const [displayData,setDisplayData] = useState([])
+    const [currentPage,setCurrentIndex] = useState(0)
+    const [totalPages,setTotalPages] = useState('')
+    console.log(currentPage)
+        useEffect(()=>{
+            if(displayProducts){
+                const itemsPP = 3;
+                const totalPages = Math.ceil(displayProducts.length/itemsPP)
+                setTotalPages(totalPages)
+                const firstIndex = (currentPage * itemsPP)- currentPage;
+                const listArr = displayProducts.slice(firstIndex,firstIndex+itemsPP)
+                console.log(firstIndex,'first',firstIndex+itemsPP,'lastIndex')
+                setDisplayData(listArr)
+            }
+        },[currentPage,displayProducts])
+
+
+if(displayData && totalPages){
     return(
+        <>
         <ul className='products-list grid grid-cols-3 gap-4  mt-5'>
-        {displayProducts.map((element,index) => {
+        {displayData.map((element,index) => {
             const {_id,brand,category,description,image,title,salePrice,price,isCart} = element;
             return <li key={_id} className="p-4 border rounded">
                     <div className='grid justify-center gap-1' >
@@ -58,6 +77,19 @@ const ProductsListing = ({productsArr}) => {
                 </li>
             })}
     </ul>
+    <div className="flex justify-center my-6">            
+         <button  onClick={()=>setCurrentIndex((prev)=>prev-1)} 
+        className="h-7 bg-black text-white py-1 flex items-center px-2 cursor-pointer mx-1" disabled= {currentPage<=1 ?true : false}>prev</button> 
+        {[...Array(totalPages)].map((element,index) => {
+            return <span onClick={()=>setCurrentIndex(index+1)} className="mx-1 border px-1" style={{color:currentPage==index+1 ?'blue' : ''}}>{index+1}</span>
+        })}
+       <button onClick={()=>setCurrentIndex((prev)=>prev+1)} 
+        className="h-7 bg-black text-white py-1 px-2 flex items-center cursor-pointer mx-1" disabled= {totalPages===currentPage ?true : false}>next</button> 
+        </div>
+
+    </>
     )
+}
+  
 }
 export default ProductsListing

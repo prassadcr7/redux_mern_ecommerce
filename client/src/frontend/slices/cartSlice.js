@@ -85,7 +85,7 @@ const cartSlice = createSlice({
             return state;
         },
         setDisplayCart:(state,action) => {
-            console.log(action)
+            // console.log(action)
             if(action.payload.cartItems && action.payload.products){
                 state.displayCart = action.payload.cartItems.map((element,index) => {
                     const found = action.payload.products.find((innerElement,innerIndex) => element._id === innerElement._id)

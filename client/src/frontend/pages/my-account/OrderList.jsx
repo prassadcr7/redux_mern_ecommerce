@@ -1,9 +1,8 @@
+import { useEffect, useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
 const OrderList = () => {
     const dispatch= useDispatch()
     const {data,error,loading} = useSelector((state) => state.orders)
-    console.log(data)
-    // const dataArr = data[0]
     if(data){
         return(
             <div>
@@ -22,7 +21,6 @@ const OrderList = () => {
                 </thead>
                 <tbody className=''>
                     {data.map((element,index) => {
-                        console.log(element._id)
                         return element.order.map((element1,index1) => {
                             const {total,brand,category,image,qty,salePrice,title,_id} = element1;
                             return <tr className="text-center mb-5">

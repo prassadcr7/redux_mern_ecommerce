@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import {getUserAddress} from '../../globalslices/useSlice.js'
 const Layout = () => {
     const data = useSelector((state) => state)
-    console.log(data)
+    // console.log(data)
     const cartItems = data.cart.data;
     const products = data.products.data;
     const displayCart = data.products.displayCart;

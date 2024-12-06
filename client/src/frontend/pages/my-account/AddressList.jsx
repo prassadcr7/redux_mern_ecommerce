@@ -1,8 +1,8 @@
 const AddressList = ({address}) => {
-    console.log(address)
+
     return(
         <>
-        <ul>
+        <ul className="grid gap-5 grid-cols-2">
             {address.map((element,index) => {
                 const {city,zip,street,state,lastName,firstName,email,country} = element;
                 return <li className="border p-3 mb-3 flex justify-between items-center">

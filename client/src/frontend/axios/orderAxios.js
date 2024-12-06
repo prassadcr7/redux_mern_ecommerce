@@ -7,7 +7,7 @@ const apiCall = axios.create({
 export const getOrdersFromDB = async() => {
     try{
         const response = await apiCall.get('/get',{withCredentials:true});
-        console.log(response)
+        // console.log(response)
         return response.data;
     }catch(error){
         console.log(error)

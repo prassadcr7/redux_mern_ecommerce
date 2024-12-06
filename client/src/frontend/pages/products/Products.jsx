@@ -10,7 +10,7 @@ const Products = () => {
     const [productsArr,setProductsArr] = useState('')
     const [categories,setCategoriesFilter] = useState([])
     const [brands,setBrandsFilter] = useState([])
-    
+    // console.log(productsArr)
     useEffect( ()=>{
         dispatch(getProducts())
         dispatch(getFilteredProducts('women'))
@@ -63,7 +63,7 @@ const Products = () => {
                     <Filters setBrandsFilter={setBrandsFilter} setCategoriesFilter={setCategoriesFilter} brands={brands}
                         categories={categories}
                     />
-                    <ProductsList productsArr={productsArr} sortProducts={sortProducts}/>
+                    <ProductsList productsArr={productsArr} sortProducts={sortProducts} data={data} setProductsArr={setProductsArr}/>
                 </div>
             </div>
         )
